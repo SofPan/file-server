@@ -9,4 +9,6 @@ server.listen(5500, () => {
 server.on("connection", client => {
   console.log("New client connected");
   client.write("Connection established");
+  client.setEncoding("utf8");
+  client.on("data", data => console.log("Client message: ", data));
 });

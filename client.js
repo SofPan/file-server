@@ -8,3 +8,5 @@ const connect = net.createConnection({
 connect.setEncoding("utf8");
 
 connect.on("data", data => console.log("Server message: ", data));
+
+connect.on("connect", () => connect.write("Hello from client"));
