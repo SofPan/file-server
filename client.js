@@ -14,5 +14,5 @@ connect.on("data", data => {
 
 connect.on("connect", () => {
   const fileName = prompt("What file would you like to request? ");
-  connect.write(`FileName: ${fileName}`);
+  connect.write(fileName);
 });
