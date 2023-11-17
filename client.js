@@ -1,18 +1,25 @@
 const net = require("net");
 const prompt = require("prompt-sync")();
+const fs = require('fs');
 
 const connect = net.createConnection({
   host: "localhost",
   port: 5500
 });
-
+let fileName;
 connect.setEncoding("utf8");
 
 connect.on("data", data => {
-  console.log("Server message: ", data);
+  fs.writeFile(`./client-downloads/${fileName}`, data, (err, body) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    return body;
+  });
 });
 
 connect.on("connect", () => {
-  const fileName = prompt("What file would you like to request? ");
+  fileName = prompt("What file would you like to request? ");
   connect.write(fileName);
 });
