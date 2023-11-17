@@ -13,8 +13,13 @@ server.on("connection", client => {
   client.setEncoding("utf8");
   client.on("data", data => {
     console.log("Client requesting file: ", data);
-    fs.readFile(`./server-files/${data}`, (error, data) => {
-      error ? console.log(error) : console.log(data);
+    fs.readFile(`./server-files/${data}`, 'utf8', (error, data) => {
+      if (error) {
+        console.log(error);
+        return;
+      }
+
+      console.log(data);
     });
   });
 });
