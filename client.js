@@ -15,8 +15,10 @@ connect.on("data", data => {
       console.log(err);
       return;
     }
+    console.log("File received");
     return body;
   });
+  connect.end();
 });
 
 connect.on("connect", () => {
